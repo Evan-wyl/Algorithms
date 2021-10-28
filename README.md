@@ -1,2 +1,2 @@
 # rec-models
-This respository  mainly include realization models by the tensorflow architecture.
+This respository  mainly include models which are realized by the tensorflow architecture.

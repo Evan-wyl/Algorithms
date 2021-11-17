@@ -1,4 +1,4 @@
-# Model Realization
+# Algorithms Realization
 This respository  mainly includes algorithms which are realized by tensorflow architecture. As follows, the algorithms of Reinforcement Learning and Recommend System are realizing.
 
 # RL

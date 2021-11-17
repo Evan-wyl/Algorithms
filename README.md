@@ -1,4 +1,4 @@
-# model-realization
+# Model Realization
 This respository  mainly include models which are realized by tensorflow architecture.
 
 # RL

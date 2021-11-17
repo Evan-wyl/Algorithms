@@ -7,12 +7,12 @@ This respository  mainly include models which are realized by tensorflow archite
 
 # RS
 ## Classic
-1. FM
+1. [FM](https://github.com/Evan-wyl/model-realization/blob/master/RS/classical/FM.py)
 
 ## Deep
-1. Wide&Deep
-2. DeepFM
-3. xDeepFM
+1. [Wide&Deep](https://github.com/Evan-wyl/model-realization/tree/master/RS/deep/WideDeep)
+2. [DeepFM](https://github.com/Evan-wyl/model-realization/tree/master/RS/deep/DeepFM)
+3. [xDeepFM](https://github.com/Evan-wyl/model-realization/tree/master/RS/deep/xDeepFM)
 
 # Reference
 1. 公众号：《泛函的范》

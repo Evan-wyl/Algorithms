@@ -16,4 +16,4 @@ This respository  mainly include models which are realized by tensorflow archite
 
 # Reference
 1. 公众号：《泛函的范》
-2. [《百度强化学习》]<https://aistudio.baidu.com/aistudio/education/group/info/1335>
+2. [《百度强化学习》](https://aistudio.baidu.com/aistudio/education/group/info/1335)

@@ -18,3 +18,4 @@ This respository  mainly includes algorithms which are realized by tensorflow ar
 1. 公众号：《泛函的范》
 2. [《百度强化学习》](https://aistudio.baidu.com/aistudio/education/group/info/1335)
 3. 《强化学习：原理与Python实现》
+4. https://github.com/zhiqingxiao/rl-book

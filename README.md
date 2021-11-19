@@ -21,3 +21,4 @@ This respository  mainly includes algorithms which are realized by tensorflow ar
 4. https://github.com/zhiqingxiao/rl-book
 5. [强化学习纲要](https://github.com/zhoubolei/introRL)
 6. [EasyRL](https://github.com/datawhalechina/easy-rl)
+7. [fun-rec](https://github.com/datawhalechina/fun-rec)

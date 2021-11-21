@@ -16,9 +16,10 @@ This respository  mainly includes algorithms which are realized by tensorflow or
 
 # Reference
 1. [强化学习纲要](https://github.com/zhoubolei/introRL)
-2. [fun-rec](https://github.com/datawhalechina/fun-rec)
-3. [EasyRL](https://github.com/datawhalechina/easy-rl)
-4. [百度强化学习](https://aistudio.baidu.com/aistudio/education/group/info/1335)
-5. [rl-book](https://github.com/zhiqingxiao/rl-book)
-6. 公众号:泛函的范
-7. 强化学习:原理与Python实现
+2. [qfettes/DeepRL-Tutorials](https://github.com/qfettes/DeepRL-Tutorials)
+3. [fun-rec](https://github.com/datawhalechina/fun-rec)
+4. [EasyRL](https://github.com/datawhalechina/easy-rl)
+5. [百度强化学习](https://aistudio.baidu.com/aistudio/education/group/info/1335)
+6. [rl-book](https://github.com/zhiqingxiao/rl-book)
+7. 公众号:泛函的范
+8. 强化学习:原理与Python实现

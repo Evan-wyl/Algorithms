@@ -3,6 +3,9 @@
 # @Author : Evan_wyl
 # @File : CEM.py
 
+"""
+Cross-Entropy Method Search the \theta which make J(\theta) maximization.
+"""
 import numpy as np
 import gym
 from gym import logger

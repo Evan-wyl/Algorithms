@@ -2,15 +2,17 @@
 This respository  mainly includes algorithms which are realized by tensorflow or Pytorch architecture. As follows, the algorithms of Reinforcement Learning and Recommend System are realizing.
 
 ## RL
-## Values_Based
+### Values_Based
 1. [DQN](https://github.com/Evan-wyl/model-realization/blob/master/RL/DQN.py)
 2. [DDPG](https://github.com/Evan-wyl/model-realization/blob/master/RL/DDPG.py)
-## Policy_Based
+
+
+### Policy_Based
 1. [CEM](https://github.com/Evan-wyl/Algos_Realization/blob/master/RL/CEM.py)
 
 ## RS
 ### Classic
-1. [FM](https://github.com/Evan-wyl/model-realization/blob/master/RS/classical/FM.py)
+1. [FM](https://github.com/Evan-wyl/Algos_Realization/blob/master/RS/classical/FM_tf.py)
 
 ### Deep
 1. [Wide&Deep](https://github.com/Evan-wyl/model-realization/tree/master/RS/deep/WideDeep)

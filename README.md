@@ -4,7 +4,6 @@ This respository  mainly includes algorithms which are realized by tensorflow or
 ## RL
 ### Values_Based
 1. [DQN](https://github.com/Evan-wyl/Algos_Realization/tree/master/RL/DQN)
-2. [DDPG](https://github.com/Evan-wyl/model-realization/blob/master/RL/DDPG.py)
 
 
 ### Policy_Based

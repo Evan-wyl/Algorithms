@@ -9,7 +9,7 @@ This respository  mainly includes algorithms which are realized by tensorflow or
 3. [Policy Gradient]()
 
 ### Values_Based
-1. [DQN](https://github.com/Evan-wyl/Algos_Realization/tree/master/RL/DQN)
+1. [DQN](https://github.com/Evan-wyl/Algos_Realization/blob/master/RL/DQN_torch.py)
 
 
 ## RS

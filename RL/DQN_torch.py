@@ -157,11 +157,11 @@ class Model(BaseAgent):
 
         self.target_model.load_state_dict(self.model.state_dict())
         self.optimizer = optim.Adam(self.model.parameters(), lr=self.lr)
-
         self.model = self.model.to(self.device)
         self.target_model.to(self.device)
 
         if self.static_policy:
+            # eval函数主要是解决模型非训练阶段存在的dropout和BN
             self.model.eval()
             self.target_model.eval()
         else:

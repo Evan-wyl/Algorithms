@@ -73,6 +73,9 @@ def finish_episode():
         value_loss.append(F.smooth_l1_loss(states_val, reward))
 
     optimizer.zero_grad()
+    # cat和stack在这里的作用一致, 都把把policy_loss和value_loss转换成张量
+    # cat:把两个concate在一起
+    # stack:把两个张量通过增加一个维度的方式合并在一起
     policy_loss = torch.cat(policy_loss).sum()
     value_loss = torch.stack(value_loss).sum()
     loss = policy_loss + value_loss

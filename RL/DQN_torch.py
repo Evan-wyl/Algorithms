@@ -125,6 +125,7 @@ class BaseAgent(object):
         for name, param in self.model.named_parameters():
             if param.requires_grad:
                 if "sigma" in name:
+                    # ravel函数类似于tf中的flatten
                     tmp += param.data.cpu().numpy().ravel().tolist()
         if tmp:
             self.sigma_parameter_mag.append(np.mean(np.abs(np.array(tmp))))
@@ -183,16 +184,17 @@ class Model(BaseAgent):
     def prep_minibatch(self):
         transitions = self.memory.sample(self.batch_size)
 
-        batch_state, batch_action, batch_reward, batcg_next_state = zip(*transitions)
+        batch_state, batch_action, batch_reward, batch_next_state = zip(*transitions)
         shape = (-1, ) + self.num_feats
 
         batch_state = torch.tensor(batch_state, device=self.device, dtype=torch.float).view(shape)
+        # squeeze把输入向量进行压缩，去掉维数为1的维度; unsqueeze函数：对于输入向量扩展一个维度，对于指定位置加上维数为1的维度
         batch_action = torch.tensor(batch_state, device=self.device, dtype=torch.long).squeeze().view(-1, 1)
         batch_reward = torch.tensor(batch_reward, device=self.device, dtype=torch.float).squeeze().view(-1, 1)
 
-        non_final_mask = torch.tensor(tuple(map(lambda s: s is not None, batcg_next_state)), device=self.device, dtype=torch.uint8)
+        non_final_mask = torch.tensor(tuple(map(lambda s: s is not None, batch_next_state)), device=self.device, dtype=torch.uint8)
         try:
-            non_final_next_states = torch.tensor([s for s in batcg_next_state if s is not None], device=self.device, dtype=torch.float).view(shape)
+            non_final_next_states = torch.tensor([s for s in batch_next_state if s is not None], device=self.device, dtype=torch.float).view(shape)
             empty_next_state_values = False
         except:
             non_final_next_states = None
@@ -208,6 +210,7 @@ class Model(BaseAgent):
             max_next_q_values = torch.zeros(self.batch_size, device=self.device, dtype=torch.float).unsqueeze(dim=1)
             if not empty_next_state_values:
                 max_next_action = self.get_max_next_state_action(non_final_next_states)
+                # gather函数:沿着跟定轴，将输入矩阵按照指定位置的值进行聚合(0代表行,1代表列)
                 max_next_q_values[non_final_mask] = self.target_model(non_final_next_states).gather(1, max_next_action)
             expected_q_values = batch_reward + (self.gamma*max_next_q_values)
 
@@ -229,6 +232,7 @@ class Model(BaseAgent):
         self.optimizer.zero_grad()
         loss.backward()
         for param in self.model.parameters():
+            # clamp_函数:将输入input张量每个元素的夹紧到区间 [min,max][min,max]，并返回结果到一个新张量。
             param.grad.data.clamp_(-1, 1)
         self.optimizer.step()
 

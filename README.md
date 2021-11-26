@@ -8,6 +8,8 @@ This respository  mainly includes algorithms which are realized by tensorflow or
 
 ### Policy_Based
 1. [CEM](https://github.com/Evan-wyl/Algos_Realization/blob/master/RL/CEM.py)
+2. [REINFORCE]()
+3. [Policy Gradient]()
 
 ## RS
 ### Classic

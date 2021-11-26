@@ -5,8 +5,7 @@ This respository  mainly includes algorithms which are realized by tensorflow or
 ## RL
 ### Policy_Based
 1. [CEM](https://github.com/Evan-wyl/Algos_Realization/blob/master/RL/CEM.py)
-2. [REINFORCE]()
-3. [Policy Gradient]()
+2. [REINFORCE](https://github.com/Evan-wyl/Algos_Realization/blob/master/RL/reinforce.py)
 
 ### Values_Based
 1. [DQN](https://github.com/Evan-wyl/Algos_Realization/blob/master/RL/DQN_torch.py)

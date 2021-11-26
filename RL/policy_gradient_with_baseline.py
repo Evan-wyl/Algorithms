@@ -1,7 +1,7 @@
 # -*- codeing = utf-8 -*-
-# @Time : 2021/11/26 15:15
+# @Time : 2021/11/26 15:16
 # @Author : Evan_wyl
-# @File : reinforce.py
+# @File : policy_gradient_with_baseline.py
 
 import argparse
 import gym
@@ -29,7 +29,8 @@ class PolicyNet(nn.Module):
         super(PolicyNet, self).__init__()
         self.fc1 = nn.Linear(4,128)
         self.dropout = nn.Dropout(p=0.6)
-        self.fc2 = nn.Linear(128,2)
+        self.action_head = nn.Linear(128, 2)
+        self.value_head = nn.Linear(200, 1)
 
         self.saved_log_prods = []
         self.rewards = []
@@ -38,8 +39,9 @@ class PolicyNet(nn.Module):
         x = self.fc1(x)
         x = self.dropout(x)
         x = F.relu(x)
-        scores = self.fc2(x)
-        return F.softmax(scores, dim=1)
+        action_scores = self.action_head(x)
+        states_score = self.value_head(x)
+        return F.softmax(action_scores, dim=1), states_score
 
 policy = PolicyNet()
 optimizer = optim.Adam(policy.parameters(), lr=1e-2)
@@ -48,15 +50,16 @@ eps = np.finfo(np.float32).eps.item()
 
 def select_action(state):
     state = torch.from_numpy(state).float().unsqueeze(0)
-    probs = policy(state)
+    probs, states_values = policy(state)
     m = Categorical(probs)
     action = m.sample()
-    policy.saved_log_prods.append(m.log_prob(action))
+    policy.saved_log_prods.append((m.log_prob(action), states_values))
     return action.item()
 
 def finish_episode():
     R = 0
     policy_loss = []
+    value_loss = []
     returns = []
     for r in policy.rewards[::-1]:
         R = r + config["gamma"] * R
@@ -64,12 +67,16 @@ def finish_episode():
     returns = torch.tensor(returns)
     returns = (returns - returns.mean()) / (returns.std() + eps)
     # REINFORCE主要代码
-    for log_prob, reward in zip(policy.saved_log_prods, returns):
-        policy_loss.append(-log_prob * reward)
+    for (log_prob,states_val), reward in zip(policy.saved_log_prods, returns):
+        policy_loss.append(-log_prob * (reward - states_val))
+        # L1 loss和L2 loss的结合
+        value_loss.append(F.smooth_l1_loss(states_val, reward))
 
     optimizer.zero_grad()
     policy_loss = torch.cat(policy_loss).sum()
-    policy_loss.backward()
+    value_loss = torch.stack(value_loss).sum()
+    loss = policy_loss + value_loss
+    loss.backward()
     optimizer.step()
     del policy.rewards[:]
     del policy.saved_log_prods[:]

@@ -10,7 +10,7 @@ This respository  mainly includes algorithms which are realized by tensorflow or
 
 ### Values_Based
 1. [SARSA]()
-2. [Q-Learning]()
+2. [Q-Learning](https://github.com/Evan-wyl/Algos_Realization/blob/master/RL/Q-Learning.py)
 3. [DQN](https://github.com/Evan-wyl/Algos_Realization/blob/master/RL/DQN_torch.py)
 
 

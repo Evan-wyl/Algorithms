@@ -203,7 +203,7 @@ class Model(BaseAgent):
 
     def compute_loss(self, batch_vars):
         batch_state, batch_action, batch_reward, non_final_mask, non_final_next_states, empty_next_state_values = batch_vars
-
+        # gather:按照dim方向，根据index聚合数据
         current_q_values = self.model(batch_state).gather(1, batch_action)
 
         with torch.no_grad():

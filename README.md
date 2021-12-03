@@ -15,6 +15,7 @@ This respository  mainly includes algorithms which are realized by tensorflow or
 
 ### Actor-Critic
 1. [PPO](https://github.com/Evan-wyl/Algos_Realization/blob/master/RL/PPO.py)
+2. [DDPG](https://github.com/Evan-wyl/Algos_Realization/blob/master/RL/DDPG.py)
 
 ## RS
 ### Classic

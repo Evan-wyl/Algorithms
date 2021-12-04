@@ -32,12 +32,12 @@ class Critic(nn.Module):
         super(Critic, self).__init__()
 
         self.l1 = nn.Linear(state_dim, 400)
-        self.l2 = nn.Linear(400, 300)
+        self.l2 = nn.Linear(400 + action_dim, 300)
         self.l3 = nn.Linear(300, 1)
 
     def forward(self, state, action):
         q = F.relu(self.l1(state))
-        q = F.relu(self.l2(q))
+        q = F.relu(self.l2(torch.cat([q, action], 1)))
         return self.l3(q)
 
 class DDPG(object):

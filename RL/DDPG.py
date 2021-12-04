@@ -60,8 +60,9 @@ class DDPG(object):
     def train(self, replay_buffer, batch_size=64):
         state, action, next_state, reward, not_done = replay_buffer.sample(batch_size)
 
-        target = self.critic_target(next_state, self.actor_target(next_state))
-        target = reward + (self.discount * not_done * target).detach()
+        with torch.no_grad():
+            target = self.critic_target(next_state, self.actor_target(next_state))
+            target = reward + (self.discount * not_done * target).detach()
 
         critic_loss = F.mse_loss(target, self.critic(state, action))
         self.critic_optimizer.zero_grad()

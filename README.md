@@ -1,5 +1,5 @@
 # Algorithms Implementation
-This respository  mainly includes algorithms which are realized by tensorflow or Pytorch architecture. As follows, the algorithms of Reinforcement Learning and Recommend System are realizing.
+This respository  mainly includes algorithms which are implemented by tensorflow or Pytorch architecture. As follows, the algorithms of Reinforcement Learning and Recommend System are realizing.
 
 
 ## RL

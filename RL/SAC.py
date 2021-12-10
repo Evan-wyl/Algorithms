@@ -184,11 +184,6 @@ class SAC(object):
         hard_update(self.critic_target, self.critic)
 
         if self.policy_type == 'Gaussian':
-            if self.automatic_entropy_tuning is True:
-                self.target_entropy = -torch.prod(torch.Tensor(action_space.shape).to(self.device)).item()
-                self.log_alpha = torch.zeros(1, requires_grad=True, device=self.device)
-                self.alpha_optim = Adam([self.log_alpha], lr=args.lr)
-
             self.policy = GaussianPolicy(num_inputs, action_space.shape[0], args.hidden_size, action_space).to(self.device)
             self.policy_optim = Adam(self.policy.parameters(), lr=args.lr)
 
@@ -238,22 +233,9 @@ class SAC(object):
         policy_loss.backward()
         self.policy_optim.step()
 
-        if self.automatic_entropy_tuning:
-            alpha_loss = -(self.log_alpha * (log_pi + self.target_entropy).detach()).mean()
-
-            self.alpha_optim.zero_grad()
-            alpha_loss.backward()
-            self.alpha_optim.step()
-
-            self.alpha = self.log_alpha.exp()
-            alpha_tlogs = self.alpha.clone()  # For TensorboardX logs
-        else:
-            alpha_loss = torch.tensor(0.).to(self.device)
-            alpha_tlogs = torch.tensor(self.alpha)  # For TensorboardX logs
-
         if updates % self.target_update_interval == 0:
             soft_update(self.critic_target, self.critic, self.tau)
-        return qf1_loss.item(), qf2_loss.item(), policy_loss.item(), alpha_loss.item(), alpha_tlogs.item()
+        return qf1_loss.item(), qf2_loss.item(), policy_loss.item()
 
         # Save model parameters
 

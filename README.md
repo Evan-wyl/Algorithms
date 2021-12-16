@@ -18,6 +18,7 @@ This respository  mainly includes algorithms which are implemented by tensorflow
 2. [DDPG](https://github.com/Evan-wyl/Algos_Realization/blob/master/RL/DDPG.py)
 3. [TD3](https://github.com/Evan-wyl/Algos_Realization/blob/master/RL/TD3.py)
 4. [SAC](https://github.com/Evan-wyl/Algorithms-Realized/blob/master/RL/SAC.py)
+5. [A3C](https://github.com/Evan-wyl/Algorithms-Implementation/blob/master/RL/A3C.py)
 
 
 ## RS
